@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 
-public class ParkingLot {
+public class ParkingLot implements Serializable {
+    private static final long serialVersionUID = 1L;  // Recommended for Serializable classes
     private static int nextLotID = 1;  // To generate unique lot IDs for each new ParkingLot
     private int lotID;
     private String lotName;
