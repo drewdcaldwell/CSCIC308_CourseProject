@@ -1,4 +1,7 @@
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+    private static final long serialVersionUID = 1L;  // Recommended for Serializable classes
     // Define the constants for different user types
     public static final int CUSTOMER = 0;     // Default user type
     public static final int STAFF = 1;        // Staff user type
