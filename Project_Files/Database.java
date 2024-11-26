@@ -16,8 +16,8 @@ public class Database {
         this.sadminDB = new ArrayList<SuperAdmin>();
     }
 
-    public <T> void addData(ArrayList<T> list, T element){
-        list.add(element);
+    public void addData(ArrayList<User> list, User element){
+        list.add(element.getUserID(), element);
     }
         
     //searches the ArrayList by ID and returns 

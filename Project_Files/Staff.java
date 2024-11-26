@@ -1,13 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Staff extends Customer {
+public class Staff extends User{
     // A map to store the assigned parking lots, where key = lotID and value = ParkingLot
     private Map<Integer, ParkingLot> assignedLots;
 
     // Constructor to initialize the assigned lots map
     public Staff(String firstName, String lastName) {
-        super(firstName, lastName, null);
+        super(firstName, lastName); 
         this.assignedLots = new HashMap<>();
     }
 

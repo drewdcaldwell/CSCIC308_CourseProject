@@ -9,7 +9,7 @@ public class ParkingLot implements Serializable {
     private String lotName;
     private int totalSpaces;
     private int emptySpaces;
-    private Map<Integer, Customer> reservations;  // Map of reservations, with key = userID
+    private Map<Integer, User> reservations;  // Map of reservations, with key = userID
 
     // Constructor: Initializes a ParkingLot object with the given lotName and totalSpaces
     public ParkingLot(String lotName, int totalSpaces) {
@@ -73,7 +73,7 @@ public class ParkingLot implements Serializable {
     }
 
     // Method to add a reservation
-    public void addReservation(Customer customer) {
+    public void addReservation(User customer) {
         if (customer != null && emptySpaces > 0) {
             reservations.put(customer.getUserID(), customer);
             emptySpaces--;
@@ -81,12 +81,12 @@ public class ParkingLot implements Serializable {
     }
 
     // Method to get all reservations
-    public Map<Integer, Customer> getReservations() {
+    public Map<Integer, User> getReservations() {
         return new HashMap<>(reservations);  // Return a copy of the reservations map
     }
 
     // Method to check if a customer has a reservation
-    public boolean checkReservation(Customer customer) {
+    public boolean checkReservation(User customer) {
         if (customer != null) {
             return reservations.containsKey(customer.getUserID());
         }
@@ -94,14 +94,14 @@ public class ParkingLot implements Serializable {
     }
 
     // Method to confirm a reservation, removing the customer from reservations
-    public void confirmReservation(Customer customer) {
+    public void confirmReservation(User customer) {
         if (customer != null) {
             reservations.remove(customer.getUserID());
         }
     }
 
     // Method to cancel a reservation, removing the customer from reservations and incrementing emptySpaces
-    public void cancelReservation(Customer customer) {
+    public void cancelReservation(User customer) {
         if (customer != null && reservations.containsKey(customer.getUserID())) {
             reservations.remove(customer.getUserID());
             emptySpaces++;
