@@ -8,7 +8,7 @@ public class Staff extends User{
     // Constructor to initialize the assigned lots map
     public Staff(String firstName, String lastName) {
         super(firstName, lastName); 
-        this.userType = STAFF;
+        setUserType(STAFF);
         this.assignedLots = new HashMap<>();
     }
 
