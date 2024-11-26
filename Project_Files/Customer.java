@@ -16,7 +16,8 @@ public class Customer implements Serializable {
     private int userType;
 
     // User's first name, last name, and vehicle plate number
-    private String firstName, lastName, plateNumber;
+    // Defines the associated accountName and passkey
+    private String firstName, lastName, plateNumber, accountName, passkey;
 
     // Constructor to initialize a Customer object with first name, last name, and plate number
     public Customer(String firstName, String lastName, String plateNumber) {
@@ -25,6 +26,16 @@ public class Customer implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.plateNumber = plateNumber;
+    }
+
+    public Customer(String firstName, String lastName, String plateNumber, String accountName, String passkey) {
+        this.userID = nextUserID++;  // Generate unique userID
+        this.userType = CUSTOMER; // Default userType is 0 (Customer)
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.plateNumber = plateNumber;
+        this.accountName = accountName;
+        this.passkey = passkey;
     }
 
     // Setter method to change the userType
@@ -74,5 +85,10 @@ public class Customer implements Serializable {
     // Setter method to change the plateNumber
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
+    }
+
+    //Returns the name of the Customer
+    public String toString(){
+        return (getFirstName + getLastName());
     }
 }
