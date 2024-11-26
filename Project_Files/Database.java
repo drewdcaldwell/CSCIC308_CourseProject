@@ -9,19 +9,20 @@ public class Database {
 
     //constructor that intializes the blank databases
     public Database(){
-        this.custDB = new ArrayList<Customer>()
-        this.lotDB = new ArrayList<Staff>()
-        this.staffDB = new ArrayList<ParkingLot>()
-        this.adminDB = new ArrayList<Admin>()
-        this.sadminDB = new ArrayList<SuperAdmin>()
+        this.custDB = new ArrayList<Customer>();
+        this.lotDB = new ArrayList<Staff>();
+        this.staffDB = new ArrayList<ParkingLot>();
+        this.adminDB = new ArrayList<Admin>();
+        this.sadminDB = new ArrayList<SuperAdmin>();
     }
 
-    public boolean addData(ArrayList list, <T> element){
+    public boolean addData(ArrayList<T> list, <T> element){
         list.add(element);
     }
 
     //searches the ArrayList by ID and returns 
     //an element of class type <T>
-    public <T> searchDataID(ArrayList list, int id){
+    public <T> searchDataID(ArrayList<> list, int id){
+        return null;
     }
 }
