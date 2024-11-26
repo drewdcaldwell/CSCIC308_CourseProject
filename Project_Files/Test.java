@@ -9,5 +9,9 @@ public class Test {
         data.addUser(staff);
         data.addUser(cust);
         data.addUser(cust2);
+        data.addLot(lot);
+        System.out.println((data.getUser("nexus")).toString());
+        lot = data.getLot("Mark's Lot");
+        System.out.println(lot.getLotName());
     }
 }

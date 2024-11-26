@@ -3,14 +3,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 public class Database {
     //Defines an ArrayList for each major database
-    private HashMap userDB;
-    private ArrayList lotDB;
+    private HashMap<String, User> userDB;
+    private ArrayList<ParkingLot> lotDB;
 
-    //!!! ALWAYS EXECUTE IN MAIN FUNCTION !!!
     //method that intializes the blank databases
     public Database(){
-        this.userDB = new HashMap<String, User>();
-        this.lotDB = new ArrayList<ParkingLot>();
+        this.userDB = new HashMap<>();
+        this.lotDB = new ArrayList<>();
     }
     
     //adds the passed in lot to the database
@@ -25,23 +24,18 @@ public class Database {
         }
     }
 
-    //searches the lotDB for the given lot object by its name
-    //and returns it
+    //searches the lotDB for the given lot object's name and returns
+    //true if found
     //Null reference error handling should be handled
     //by the calling method
-    public ParkingLot searchLot(String lotName){
-        Iterator<ParkingLot> it = lotDB.iterator();
-        while (it.hasNext()){
-            //checks the ArrayList
-            //to see if the name of the lot matches the lotName
-            if ((((it.next()).getLotName()).equals(lotName)))
-            {
-                return it.next();
+    public ParkingLot getLot(String lotName){
+        for (ParkingLot l: lotDB){
+            if((l.getLotName()).equals(lotName)){
+                return l;
             }
         }
         return null;
     }
-
 
     //adds a User object to its appropiate arraylist
     //by checking its Class type
@@ -58,13 +52,23 @@ public class Database {
         return false;
     }
  
-    //searches userDB for the given account and returns
-    //the User
+    //searches userDB for the given account and changes the user's name
     //Null reference error handling should be handled
     //by the calling method
-    public User searchUserDB(String accountName){
+    public User getUser(String accountName){
         if (userDB.containsKey(accountName)){
-            return userDB.get(accountName);
+            return (userDB.get(accountName));
+        }
+        return null;
+    }
+
+    //searches userDB for the given account and returns
+    //the User's name
+    //Null reference error handling should be handled
+    //by the calling method
+    public String getUserName(String accountName){
+        if (userDB.containsKey(accountName)){
+            return (userDB.get(accountName).toString());
         }
         return null;
     }
