@@ -3,42 +3,27 @@ import java.util.HashMap;
 public class Database {
     //Defines an ArrayList for each major database
     private HashMap userDB;
-    private ArrayList custDB;
     private ArrayList lotDB;
-    private ArrayList staffDB;
-    //TO DO
-    // private ArrayList adminDB; 
-    // private ArrayList sadminDB; 
 
     //!!! ALWAYS EXECUTE IN MAIN FUNCTION !!!
     //method that intializes the blank databases
     public Database(){
         this.userDB = new HashMap();
-        this.custDB = new ArrayList<Customer>();
-        this.lotDB = new ArrayList<Staff>();
-        this.staffDB = new ArrayList<ParkingLot>();
-        //this.adminDB = new ArrayList<Admin>();
-        //this.sadminDB = new ArrayList<SuperAdmin>();
+        this.lotDB = new ArrayList<ParkingLot>();
     }
     
     //adds a User object to its appropiate arraylist
     //by checking its Class type
     public boolean addUser(User element){
-        if (element instanceof Customer){
+        if (!userDB.containsKey(element.getAccount())){
             userDB.put(element.getAccount(), element);
             System.out.println(element.getUserID()); //test
-            System.out.println(element + "is in cust DB"); //to test output
+            System.out.println(element + " is in cust DB"); //to test output
             return true;
         }
-        else if (element instanceof Staff){
-            staffDB.add(element);
-            System.out.println(element.getUserID()); //test
-            System.out.println(element + "is in staff DB"); //to test output
-            return true;
+        else{
+            System.out.println("Account already exists"); //to test output
         }
-        //TO DO
-        // else if (element instanceof Admin){}
-        // else if (element instanceof SuperAdmin){}
         return false;
     }
     
