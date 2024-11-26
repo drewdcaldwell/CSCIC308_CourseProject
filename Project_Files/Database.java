@@ -22,11 +22,15 @@ public class Database {
     //by checking its Class type
     public boolean addUser(User element){
         if (element instanceof Customer){
-            custDB.add(element.getUserID(), element);
+            custDB.add(element);
+            System.out.println(element.getUserID()); //test
+            System.out.println(element + "is in cust DB"); //to test output
             return true;
         }
         else if (element instanceof Staff){
-            staffDB.add(element.getUserID(), element);
+            staffDB.add(element);
+            System.out.println(element.getUserID()); //test
+            System.out.println(element + "is in staff DB"); //to test output
             return true;
         }
         //TO DO
