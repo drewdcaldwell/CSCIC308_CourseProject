@@ -1,9 +1,6 @@
 import java.io.Serializable;
 
 public class Customer extends User{
-    private static int nextUserID = 1;   // To generate unique user IDs for each new Customer
-    private final int userID;   // Unique identifier for the user
-
     // Type of the user (can represent different access levels such as regular Customer, Admin, etc.)
     private int userType;
 
@@ -12,22 +9,16 @@ public class Customer extends User{
     private String firstName, lastName, plateNumber, accountName, passkey;
 
     // Constructor to initialize a Customer object with first name, last name, and plate number
-    public User(String firstName, String lastName, String plateNumber) {
-        this.userID = nextUserID++;  // Generate unique userID
+    public Customer(String firstName, String lastName, String plateNumber) {
+        super(firstName, lastName);
         this.userType = CUSTOMER; // Default userType is 0 (Customer)
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.plateNumber = plateNumber;
     }
 
-    public User(String firstName, String lastName, String plateNumber, String accountName, String passkey) {
-        this.userID = nextUserID++;  // Generate unique userID
+    public Customer(String firstName, String lastName, String plateNumber, String accountName, String passkey) {
+        super(firstName, lastName, accountName, passkey);
         this.userType = CUSTOMER; // Default userType is 0 (Customer)
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.plateNumber = plateNumber;
-        this.accountName = accountName;
-        this.passkey = passkey;
     }
 
     // Getter method to return the plateNumber
