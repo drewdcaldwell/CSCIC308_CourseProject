@@ -9,7 +9,7 @@ public abstract class User implements Serializable {
     public static final int SUPER_ADMIN = 3;  // Super Admin user type
 
     private static int nextUserID = 1;   
-    // To generate unique user IDs for each new Customer
+    // To generate unique user IDs for each new User
 
     private final int userID;   // Unique identifier for the user
 
@@ -20,7 +20,7 @@ public abstract class User implements Serializable {
     // Defines the associated accountName and passkey
     private String firstName, lastName, accountName, passkey;
 
-    // Constructor to initialize a Customer object with first name, last name, and plate number
+    // Constructor to initialize a User object with first name, last name, and plate number
     public User(String firstName, String lastName) {
         this.userID = nextUserID++;  
         // Generate unique userID
@@ -76,7 +76,7 @@ public abstract class User implements Serializable {
         this.lastName = lastName;
     }
 
-    //Returns the name of the Customer
+    //Returns the name of the User
     public String toString(){
         return (getFirstName() + getLastName());
     }
