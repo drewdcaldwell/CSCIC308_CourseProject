@@ -76,6 +76,15 @@ public abstract class User implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getAccount(){
+        return accountName;
+    }
+
+    public boolean setAccount(String accountName){
+        this.accountName = accountName;
+        return true;
+    }
+
     //Returns the name of the User
     public String toString(){
         return (getFirstName() + getLastName());

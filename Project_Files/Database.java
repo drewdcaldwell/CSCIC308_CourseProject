@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 public class Database {
     //Defines an ArrayList for each major database
+    private HashMap userDB;
     private ArrayList custDB;
     private ArrayList lotDB;
     private ArrayList staffDB;
@@ -11,6 +13,7 @@ public class Database {
     //!!! ALWAYS EXECUTE IN MAIN FUNCTION !!!
     //method that intializes the blank databases
     public Database(){
+        this.userDB = new HashMap();
         this.custDB = new ArrayList<Customer>();
         this.lotDB = new ArrayList<Staff>();
         this.staffDB = new ArrayList<ParkingLot>();
@@ -22,7 +25,7 @@ public class Database {
     //by checking its Class type
     public boolean addUser(User element){
         if (element instanceof Customer){
-            custDB.add(element);
+            userDB.put(element.getAccount(), element);
             System.out.println(element.getUserID()); //test
             System.out.println(element + "is in cust DB"); //to test output
             return true;
