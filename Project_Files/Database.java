@@ -9,7 +9,7 @@ public class Database {
     //!!! ALWAYS EXECUTE IN MAIN FUNCTION !!!
     //method that intializes the blank databases
     public Database(){
-        this.userDB = new HashMap();
+        this.userDB = new HashMap<String, User>();
         this.lotDB = new ArrayList<ParkingLot>();
     }
     
