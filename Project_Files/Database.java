@@ -16,13 +16,13 @@ public class Database {
         this.sadminDB = new ArrayList<SuperAdmin>();
     }
 
-    public boolean addData(<T> element){
+    public <T> void addData(ArrayList<T> list, T element){
         list.add(element);
     }
-
+        
     //searches the ArrayList by ID and returns 
     //an element of class type <T>
-    public <T> T searchDataID(ArrayList<T>, int id){
+    public <T> T searchDataID(ArrayList<T> list, int id){
         return null;
     }
 }
