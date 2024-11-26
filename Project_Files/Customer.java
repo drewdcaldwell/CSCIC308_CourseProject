@@ -1,12 +1,7 @@
-import java.io.Serializable;
-
 public class Customer extends User{
-    // Type of the user (can represent different access levels such as regular Customer, Admin, etc.)
-    private int userType;
-
     // User's first name, last name, and vehicle plate number
     // Defines the associated accountName and passkey
-    private String firstName, lastName, plateNumber, accountName, passkey;
+    private String plateNumber;
 
     // Constructor to initialize a Customer object with first name, last name, and plate number
     public Customer(String firstName, String lastName, String plateNumber) {
