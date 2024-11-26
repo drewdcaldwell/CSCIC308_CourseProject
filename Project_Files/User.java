@@ -87,6 +87,6 @@ public abstract class User implements Serializable {
 
     //Returns the name of the User
     public String toString(){
-        return (getFirstName() + getLastName());
+        return (getFirstName() + " " + getLastName());
     }
 }

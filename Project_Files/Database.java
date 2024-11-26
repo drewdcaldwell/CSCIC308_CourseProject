@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 public class Database {
     //Defines an ArrayList for each major database
     private HashMap userDB;
@@ -12,6 +13,36 @@ public class Database {
         this.lotDB = new ArrayList<ParkingLot>();
     }
     
+    //adds the passed in lot to the database
+    public boolean addLot(ParkingLot lot){
+        if(!lotDB.contains(lot)){
+            lotDB.add(lot);
+            return true;
+        }
+        else{
+            System.out.println("Lot already exists"); //test
+            return false;
+        }
+    }
+
+    //searches the lotDB for the given lot object by its name
+    //and returns it
+    //Null reference error handling should be handled
+    //by the calling method
+    public ParkingLot searchLot(String lotName){
+        Iterator<ParkingLot> it = lotDB.iterator();
+        while (it.hasNext()){
+            //checks the ArrayList
+            //to see if the name of the lot matches the lotName
+            if ((((it.next()).getLotName()).equals(lotName)))
+            {
+                return it.next();
+            }
+        }
+        return null;
+    }
+
+
     //adds a User object to its appropiate arraylist
     //by checking its Class type
     public boolean addUser(User element){
@@ -26,16 +57,15 @@ public class Database {
         }
         return false;
     }
-    
-    //adds a User object to its appropiate arraylist
-    public boolean addUser(User element, ArrayList<User> list){
-        list.add(element.getUserID(), element);
-        return true;
-    }
-
-    //searches the ArrayList by ID and returns 
-    //an element of class type <T>
-    public <T> T searchDataID(ArrayList<User> list, int id){
+ 
+    //searches userDB for the given account and returns
+    //the User
+    //Null reference error handling should be handled
+    //by the calling method
+    public User searchUserDB(String accountName){
+        if (userDB.containsKey(accountName)){
+            return userDB.get(accountName);
+        }
         return null;
     }
 }
