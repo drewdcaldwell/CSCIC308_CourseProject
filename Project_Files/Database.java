@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 public class Database {
     //Defines an ArrayList for each major database
     private HashMap<String, User> userDB;

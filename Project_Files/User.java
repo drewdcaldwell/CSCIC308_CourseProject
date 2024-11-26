@@ -76,12 +76,25 @@ public abstract class User implements Serializable {
         this.lastName = lastName;
     }
 
+    // Getter method to get accountName
     public String getAccount(){
         return accountName;
     }
 
+    // Setter method to change accountName
     public boolean setAccount(String accountName){
         this.accountName = accountName;
+        return true;
+    }
+
+    // Getter method to get accountName
+    public String getPasskey(){
+        return passkey;
+    }
+
+    // Setter method to change accountName
+    public boolean setPasskey(String passkey){
+        this.passkey = passkey;
         return true;
     }
 
