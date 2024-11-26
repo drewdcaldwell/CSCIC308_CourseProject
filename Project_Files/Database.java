@@ -5,7 +5,7 @@ public class Database {
     private ArrayList lotDB;
     private ArrayList staffDB;
     private ArrayList adminDB;
-    private ArraryList sadminDB;
+    private ArrayList sadminDB;
 
     //constructor that intializes the blank databases
     public Database(){
@@ -16,13 +16,13 @@ public class Database {
         this.sadminDB = new ArrayList<SuperAdmin>();
     }
 
-    public boolean addData(ArrayList<T> list, <T> element){
+    public boolean addData(<T> element){
         list.add(element);
     }
 
     //searches the ArrayList by ID and returns 
     //an element of class type <T>
-    public <T> searchDataID(ArrayList<> list, int id){
+    public <T> T searchDataID(ArrayList<T>, int id){
         return null;
     }
 }
