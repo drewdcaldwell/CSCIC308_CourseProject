@@ -4,11 +4,13 @@ public class Database {
     private ArrayList custDB;
     private ArrayList lotDB;
     private ArrayList staffDB;
-    //private ArrayList adminDB;
-    //private ArrayList sadminDB;
+    //TO DO
+    // private ArrayList adminDB; 
+    // private ArrayList sadminDB; 
 
-    //constructor that intializes the blank databases
-    public Database(){
+    //!!! ALWAYS EXECUTE IN MAIN FUNCTION !!!
+    //method that intializes the blank databases
+    public void initalizeDatabase(){
         this.custDB = new ArrayList<Customer>();
         this.lotDB = new ArrayList<Staff>();
         this.staffDB = new ArrayList<ParkingLot>();
@@ -16,8 +18,26 @@ public class Database {
         //this.sadminDB = new ArrayList<SuperAdmin>();
     }
 
-    public void addData(ArrayList<User> list, User element){
+    //adds a User object to its appropiate arraylist
+    public boolean addUser(User element, ArrayList<User> list){
         list.add(element.getUserID(), element);
+        return true;
+    }
+
+    //adds a User object to its appropiate arraylist
+    public boolean addUser(User element){
+        if (element instanceof Customer){
+            custDB.add(element.getUserID(), element);
+            return true;
+        }
+        else if (element instanceof Staff){
+            staffDB.add(element.getUserID(), element);
+            return true;
+        }
+        //TO DO
+        // else if (element instanceof Admin){}
+        // else if (element instanceof SuperAdmin){}
+        return false;
     }
         
     //searches the ArrayList by ID and returns 
