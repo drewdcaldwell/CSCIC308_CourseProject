@@ -30,6 +30,7 @@ public class Database {
             return true;
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Database not found...");
+            TestParkingLots.main(null);
         }
         return false;
     }

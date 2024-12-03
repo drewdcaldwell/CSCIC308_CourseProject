@@ -4,6 +4,9 @@
  */
 package com.c308team2.parkinglotapp;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author dustt
@@ -35,6 +38,11 @@ public class ParkingListPanel extends javax.swing.JPanel {
 
         parkingLotList.setModel(Database.lotDB);
         parkingLotList.setCellRenderer(new ParkingLotCellRenderer());
+        parkingLotList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                parkingLotListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(parkingLotList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -52,6 +60,14 @@ public class ParkingListPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void parkingLotListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_parkingLotListValueChanged
+        //getParent().add(new ParkingLotPanel((ParkingLot) jList1.getSelectedValue()), "new");
+        CardLayout card = (CardLayout) getParent().getLayout();
+        ParkingLotPanel lotPanel = (ParkingLotPanel) getParent().getComponent(1);
+        lotPanel.updateLot(parkingLotList.getSelectedValue());
+        card.show(getParent(), "lotCard"); 
+    }//GEN-LAST:event_parkingLotListValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -27,9 +27,16 @@ public class MainPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         sidePanel1 = new com.c308team2.parkinglotapp.SidePanel();
+        bigPanel = new javax.swing.JPanel();
         parkingListPanel1 = new com.c308team2.parkinglotapp.ParkingListPanel();
+        parkingLotPanel1 = new com.c308team2.parkinglotapp.ParkingLotPanel();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        bigPanel.setPreferredSize(new java.awt.Dimension(1080, 720));
+        bigPanel.setLayout(new java.awt.CardLayout());
+        bigPanel.add(parkingListPanel1, "listCard");
+        bigPanel.add(parkingLotPanel1, "lotCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -38,16 +45,16 @@ public class MainPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sidePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(parkingListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addComponent(bigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sidePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(parkingListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(bigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -56,7 +63,9 @@ public class MainPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bigPanel;
     private com.c308team2.parkinglotapp.ParkingListPanel parkingListPanel1;
+    private com.c308team2.parkinglotapp.ParkingLotPanel parkingLotPanel1;
     public static com.c308team2.parkinglotapp.SidePanel sidePanel1;
     // End of variables declaration//GEN-END:variables
 }

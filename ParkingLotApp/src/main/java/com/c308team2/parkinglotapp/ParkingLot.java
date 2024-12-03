@@ -15,7 +15,7 @@ public class ParkingLot implements Serializable {
     private String address;
     private int totalSpaces;
     private int emptySpaces;
-    private Map<Integer, User> reservations;
+    private Map<String, User> reservations;
 
     public ParkingLot(String lotName, int totalSpaces) {
         this.lotID = nextLotID++;
@@ -97,33 +97,38 @@ public class ParkingLot implements Serializable {
 
     public void addReservation(User customer) {
         if (customer != null && emptySpaces > 0) {
-            reservations.put(customer.getUserID(), customer);
+            reservations.put(customer.getAccount(), customer);
             emptySpaces--;
         }
     }
 
-    public Map<Integer, User> getReservations() {
+    public Map<String, User> getReservations() {
         return new HashMap<>(reservations);
     }
 
     public boolean checkReservation(User customer) {
         if (customer != null) {
-            return reservations.containsKey(customer.getUserID());
+            return reservations.containsKey(customer.getAccount());
         }
         return false;
     }
 
     public void confirmReservation(User customer) {
         if (customer != null) {
-            reservations.remove(customer.getUserID());
+            reservations.remove(customer.getAccount());
         }
     }
 
     public void cancelReservation(User customer) {
-        if (customer != null && reservations.containsKey(customer.getUserID())) {
-            reservations.remove(customer.getUserID());
+        if (customer != null && reservations.containsKey(customer.getAccount())) {
+            reservations.remove(customer.getAccount());
             emptySpaces++;
         }
+    }
+    
+    public void clearReservations(){
+        emptySpaces += reservations.size();
+        reservations.clear();
     }
 
     public void resetLot() {
