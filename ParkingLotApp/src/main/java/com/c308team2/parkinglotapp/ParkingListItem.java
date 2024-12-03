@@ -4,6 +4,8 @@
  */
 package com.c308team2.parkinglotapp;
 
+import java.awt.Color;
+
 /**
  *
  * @author dustt
@@ -24,6 +26,9 @@ public class ParkingListItem extends javax.swing.JPanel {
         numberSpacesLabel.setText(parkingLot.getEmptySpaces() + " / " + parkingLot.getTotalSpaces());
         progressBar.setMaximum(parkingLot.getTotalSpaces());
         progressBar.setValue(parkingLot.getOccupiedSpaces());
+        double fullness = parkingLot.getOccupiedSpaces() / (1.0 * parkingLot.getTotalSpaces());
+        if(fullness == 1) progressBar.setForeground(Color.red);
+        else if(fullness >= 0.60) progressBar.setForeground(Color.ORANGE);
     }
 
     /**

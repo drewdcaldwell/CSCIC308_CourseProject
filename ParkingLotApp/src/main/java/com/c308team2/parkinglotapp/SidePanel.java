@@ -34,7 +34,7 @@ public class SidePanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 153, 255));
         setPreferredSize(new java.awt.Dimension(200, 720));
 
-        welcomeLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
+        welcomeLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         welcomeLabel.setText("Hello,");
 
@@ -65,7 +65,7 @@ public class SidePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 620, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 612, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );

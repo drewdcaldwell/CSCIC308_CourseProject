@@ -135,14 +135,7 @@ public class LoginInputPanel extends javax.swing.JPanel {
             return;
         }
         
-        // temp testing:
-        int i = 0;
-        for(char c : password){
-            if(c == loggeduser.getPasskey().charAt(i)){
-                System.out.println("Match!");
-                i++;
-            }
-        }
+        
         if(!passString.equals(loggeduser.getPasskey())){
             System.out.println("Incorrect password...");
             errorLabel.setText("Sorry, password incorrect, please try again.");

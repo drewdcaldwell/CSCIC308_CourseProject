@@ -36,7 +36,7 @@ public class LoginWelcomePanel extends javax.swing.JPanel {
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         welcomeLabel.setText("<html>Welcome to the Parking Lot Management Application!</html>");
 
-        developedLabel.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        developedLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 14)); // NOI18N
         developedLabel.setForeground(new java.awt.Color(255, 255, 255));
         developedLabel.setText("♥ Developed by Drew Caldwell, Brady Covyeou, Sukhkaran Gill, and Dustin Groh");
 
@@ -50,7 +50,7 @@ public class LoginWelcomePanel extends javax.swing.JPanel {
                     .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(developedLabel)
-                        .addGap(0, 87, Short.MAX_VALUE)))
+                        .addGap(0, 65, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

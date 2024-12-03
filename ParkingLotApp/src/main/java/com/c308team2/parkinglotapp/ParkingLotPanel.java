@@ -37,10 +37,16 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             System.out.println("Reservation found");
             makeReservationButton.setEnabled(false);
             cancelReservationButton.setEnabled(true);
+            reservationInfoLabel.setText("You already have a reservation.");
+        } else if(currentLot.getEmptySpaces() == 0){
+            makeReservationButton.setEnabled(false);
+            cancelReservationButton.setEnabled(false);
+            reservationInfoLabel.setText("Sorry, this lot is full.");
         } else {
             System.out.println("No Reservation found");
             makeReservationButton.setEnabled(true);
             cancelReservationButton.setEnabled(false);
+            reservationInfoLabel.setText("Would you like to make a reservation?");
         }
     }
 
@@ -59,10 +65,11 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         totalSpacesNumber = new javax.swing.JLabel();
         emptySpacesLabel = new javax.swing.JLabel();
         emptySpacesNumber = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        reservationsLabel = new javax.swing.JLabel();
         makeReservationButton = new javax.swing.JButton();
         cancelReservationButton = new javax.swing.JButton();
         backButtonLabel = new javax.swing.JLabel();
+        reservationInfoLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1080, 720));
 
@@ -84,7 +91,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         emptySpacesNumber.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         emptySpacesNumber.setText("25");
 
-        jLabel1.setText("Reservations:");
+        reservationsLabel.setText("Reservations:");
 
         makeReservationButton.setText("Reserve a Spot");
         makeReservationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +116,8 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        reservationInfoLabel.setText("Make a reservation.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,7 +126,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(reservationsLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +141,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                         .addGap(214, 214, 214))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(reservationInfoLabel)
                             .addComponent(backButtonLabel)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(makeReservationButton)
@@ -160,8 +170,10 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(emptySpacesNumber)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(87, 87, 87)
+                .addComponent(reservationsLabel)
+                .addGap(27, 27, 27)
+                .addComponent(reservationInfoLabel)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(makeReservationButton)
                     .addComponent(cancelReservationButton))
@@ -192,10 +204,11 @@ public class ParkingLotPanel extends javax.swing.JPanel {
     private javax.swing.JButton cancelReservationButton;
     private javax.swing.JLabel emptySpacesLabel;
     private javax.swing.JLabel emptySpacesNumber;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lotAddressLabel;
     private javax.swing.JLabel lotNameLabel;
     private javax.swing.JButton makeReservationButton;
+    private javax.swing.JLabel reservationInfoLabel;
+    private javax.swing.JLabel reservationsLabel;
     private javax.swing.JLabel totalSpacesLabel;
     private javax.swing.JLabel totalSpacesNumber;
     // End of variables declaration//GEN-END:variables

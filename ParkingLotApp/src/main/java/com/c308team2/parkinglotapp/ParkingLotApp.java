@@ -16,6 +16,7 @@ public class ParkingLotApp {
         System.out.println("Hello World!");
         Database.initiateDB();
         
+        
         FlatLightLaf.setup();
 
         /* Create and display the form */
