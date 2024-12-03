@@ -46,7 +46,7 @@ public class ParkingListItem extends javax.swing.JPanel {
         numberSpacesLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         setMaximumSize(new java.awt.Dimension(1080, 150));
         setPreferredSize(new java.awt.Dimension(1000, 150));
 
@@ -89,7 +89,7 @@ public class ParkingListItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lotAddressLabel))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

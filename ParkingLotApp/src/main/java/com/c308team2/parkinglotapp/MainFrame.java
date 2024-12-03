@@ -4,6 +4,10 @@
  */
 package com.c308team2.parkinglotapp;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+
 /**
  *
  * @author dustt
@@ -15,6 +19,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        JPanel loginInputP = (JPanel) loginPanel.getComponent(1);
+        JButton loginButton = (JButton) loginInputP.getComponent(6);
+        getRootPane().setDefaultButton(loginButton);
     }
 
     /**

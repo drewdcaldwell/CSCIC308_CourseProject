@@ -33,6 +33,7 @@ public class TestParkingLots {
         Database.addLot(new ParkingLot("Lakeside Parking", "516 Lakeside Dr, Lakeview", 25, 50));
         Database.addLot(new ParkingLot("Parkview Lot", "617 Parkview Blvd, Cityville", 10, 20));
         Database.addLot(new ParkingLot("City Hall Lot", "718 City Hall Rd, Cityville", 18, 40));
+        Database.addLot(new ParkingLot("Fully Full Lot", "Filly Fill Street, Filcity", 0, 117));
         Database.saveDBToFile();
     }
 }
