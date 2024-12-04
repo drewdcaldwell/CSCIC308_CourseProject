@@ -65,8 +65,10 @@ public class ParkingListPanel extends javax.swing.JPanel {
         //getParent().add(new ParkingLotPanel((ParkingLot) jList1.getSelectedValue()), "new");
         CardLayout card = (CardLayout) getParent().getLayout();
         ParkingLotPanel lotPanel = (ParkingLotPanel) getParent().getComponent(1);
-        lotPanel.updateLot(parkingLotList.getSelectedValue());
-        card.show(getParent(), "lotCard"); 
+        ParkingLot currentLot = parkingLotList.getSelectedValue();
+        if(currentLot != null) lotPanel.updateLot(currentLot);
+        card.show(getParent(), "lotCard");
+        parkingLotList.clearSelection();
     }//GEN-LAST:event_parkingLotListValueChanged
 
 

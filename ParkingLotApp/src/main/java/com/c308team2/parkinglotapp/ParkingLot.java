@@ -5,6 +5,7 @@
 package com.c308team2.parkinglotapp;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class ParkingLot implements Serializable {
@@ -16,6 +17,7 @@ public class ParkingLot implements Serializable {
     private int totalSpaces;
     private int emptySpaces;
     private Map<String, User> reservations;
+    private HashSet<String> staffList;
 
     public ParkingLot(String lotName, int totalSpaces) {
         this.lotID = nextLotID++;
@@ -23,6 +25,7 @@ public class ParkingLot implements Serializable {
         this.totalSpaces = totalSpaces;
         this.emptySpaces = totalSpaces;
         this.reservations = new HashMap<>();
+        this.staffList = new HashSet<>();
     }
     
     public ParkingLot(String lotName, String address, int emptySpaces, int totalSpaces){
@@ -94,6 +97,30 @@ public class ParkingLot implements Serializable {
             emptySpaces--;
         }
     }
+    
+    public void addStaff(String username){
+        if(staffList == null) staffList = new HashSet<>();
+        staffList.add(username);
+    }
+    
+    public void addStaff(User user){
+        if(staffList == null) staffList = new HashSet<>();
+        staffList.add(user.getAccount());
+    }
+    
+    public void removeStaff(String username){
+        staffList.remove(username);
+    }
+    
+    public boolean checkStaff(String username){
+        if(staffList == null) staffList = new HashSet<>();
+        return staffList.contains(username);
+    }
+    
+    public boolean checkStaff(User user){
+        if(staffList == null) staffList = new HashSet<>();
+        return staffList.contains(user.getAccount());
+    }
 
     public void addReservation(User customer) {
         if (customer != null && emptySpaces > 0) {
@@ -114,6 +141,7 @@ public class ParkingLot implements Serializable {
     }
 
     public void confirmReservation(User customer) {
+        // remove the user from reservation list
         if (customer != null) {
             reservations.remove(customer.getAccount());
         }
@@ -121,7 +149,9 @@ public class ParkingLot implements Serializable {
 
     public void cancelReservation(User customer) {
         if (customer != null && reservations.containsKey(customer.getAccount())) {
+            // remove user from reservation list
             reservations.remove(customer.getAccount());
+            // increment emptySpaces
             emptySpaces++;
         }
     }

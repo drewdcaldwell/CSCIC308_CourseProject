@@ -50,10 +50,6 @@ public class RegisterInputPanel extends javax.swing.JPanel {
 
         passwordLabel.setText("Password:");
 
-        usernameTextField.setText("username");
-
-        passwordField.setText("password");
-
         loginLabel.setText("Please Login");
 
         loginButton.setText("Login Now");
@@ -74,15 +70,9 @@ public class RegisterInputPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name:");
 
-        firstNameField.setText("First Name");
-
         jLabel3.setText("Last Name:");
 
-        lastNameField.setText("Last Name");
-
         jLabel4.setText("Plate Number:");
-
-        plateField.setText("Plate Number");
 
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
         errorLabel.setText("    ");

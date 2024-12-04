@@ -105,14 +105,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="usernameTextField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="username"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="password"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="loginLabel">
       <Properties>
@@ -146,9 +140,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="firstNameField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="First Name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -156,9 +147,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="lastNameField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Last Name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -166,9 +154,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="plateField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Plate Number"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="errorLabel">
       <Properties>

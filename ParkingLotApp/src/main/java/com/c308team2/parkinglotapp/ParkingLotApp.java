@@ -16,6 +16,9 @@ public class ParkingLotApp {
         System.out.println("Hello World!");
         Database.initiateDB();
         
+        // to make account a SuperAdmin do this:
+        //Database.userDB.get("dusn").setUserType(3);
+        
         
         FlatLightLaf.setup();
 
