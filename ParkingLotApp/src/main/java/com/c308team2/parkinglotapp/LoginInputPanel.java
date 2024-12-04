@@ -45,10 +45,6 @@ public class LoginInputPanel extends javax.swing.JPanel {
 
         passwordLabel.setText("Password:");
 
-        usernameTextField.setText("username");
-
-        passwordField.setText("password");
-
         loginLabel.setText("Please Login");
 
         loginButton.setText("Login");
@@ -155,6 +151,9 @@ public class LoginInputPanel extends javax.swing.JPanel {
         card.show(getParent().getParent(), "mainCard");
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    public void clearPassword(){
+        passwordField.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel errorLabel;

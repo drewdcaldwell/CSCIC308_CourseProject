@@ -7,6 +7,7 @@ package com.c308team2.parkinglotapp;
 import java.awt.CardLayout;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -226,6 +227,10 @@ public class SidePanel extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         Session.clear();
+        JPanel mainPanel = (JPanel) getParent().getParent();
+        LoginPanel loginPanel = (LoginPanel) mainPanel.getComponent(0);
+        LoginInputPanel inputPanel = (LoginInputPanel) loginPanel.getComponent(1);
+        inputPanel.clearPassword();
         CardLayout card = (CardLayout) getParent().getParent().getLayout();
         card.show(getParent().getParent(), "loginCard");
     }//GEN-LAST:event_logoutButtonActionPerformed
