@@ -65,6 +65,17 @@ public class ParkingListModel extends AbstractListModel<ParkingLot> implements S
         System.out.println("Lot already exists");
         return false;
     }
+    
+    public boolean removeLot(ParkingLot lot){
+        if(parkingLots.contains(lot)){
+            int index = parkingLots.indexOf(lot);
+            parkingLots.remove(lot);
+            fireIntervalRemoved(this, index, index);
+            return true;
+        }
+        System.out.println("Lot not found...");
+        return false;
+    }
 
     public int size() {
         return parkingLots.size();

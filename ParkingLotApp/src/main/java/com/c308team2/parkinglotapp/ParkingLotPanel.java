@@ -54,17 +54,27 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             reservationInfoLabel.setText("Would you like to make a reservation?");
         }
         
-        // check if currentUser is admin or in staff list
-        if(currentUser.getUserType() >= 2 || currentLot.checkStaff(currentUser)) {
-            // show staff buttons
+        // check if currentUser is admin or higher
+        if(currentUser.getUserType() >= 2) {
+            // show admin buttons, can delete lot
             manageReservationsButton.setVisible(true);
             incrementButton.setVisible(true);
             decrementButton.setVisible(true);
+            deleteButton.setVisible(true);
+        } 
+        // check if currentUser is staff of currentLot
+        else if(currentLot.checkStaff(currentUser)){
+            // show staff buttons, cannot delete lot
+            manageReservationsButton.setVisible(true);
+            incrementButton.setVisible(true);
+            decrementButton.setVisible(true);
+            deleteButton.setVisible(false);
         } else {
-            // hide staff buttons
+            // hide all staff buttons
             manageReservationsButton.setVisible(false);
             incrementButton.setVisible(false);
             decrementButton.setVisible(false);
+            deleteButton.setVisible(false);
         }
     }
 
@@ -87,6 +97,11 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         customPlateLabel = new javax.swing.JLabel();
         confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        deleteDialog = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        deleteBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         lotNameLabel = new javax.swing.JLabel();
         lotAddressLabel = new javax.swing.JLabel();
         totalSpacesLabel = new javax.swing.JLabel();
@@ -101,6 +116,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         incrementButton = new javax.swing.JButton();
         decrementButton = new javax.swing.JButton();
         manageReservationsButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         reservationDialog.setTitle("Reservation List");
         reservationDialog.setAlwaysOnTop(true);
@@ -192,6 +208,56 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        deleteDialog.setTitle("Warning");
+
+        jLabel1.setText("Are you sure you want to delete this lot?");
+
+        jLabel2.setText("This cannot be undone.");
+
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deleteDialogLayout = new javax.swing.GroupLayout(deleteDialog.getContentPane());
+        deleteDialog.getContentPane().setLayout(deleteDialogLayout);
+        deleteDialogLayout.setHorizontalGroup(
+            deleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteDialogLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(deleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(deleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(deleteDialogLayout.createSequentialGroup()
+                            .addComponent(deleteBtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cancelBtn))
+                        .addComponent(jLabel1)))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        deleteDialogLayout.setVerticalGroup(
+            deleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(deleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBtn)
+                    .addComponent(cancelBtn))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         setPreferredSize(new java.awt.Dimension(1080, 720));
 
         lotNameLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 48)); // NOI18N
@@ -260,6 +326,13 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteButton.setText("Delete This Lot");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,9 +340,6 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(reservationsLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lotNameLabel)
@@ -281,28 +351,36 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                             .addComponent(totalSpacesNumber)
                             .addComponent(emptySpacesLabel))
                         .addGap(214, 214, 214))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backButtonLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(makeReservationButton)
+                                .addGap(62, 62, 62)
+                                .addComponent(cancelReservationButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(manageReservationsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(decrementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(incrementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(101, 101, 101))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reservationInfoLabel)
-                            .addComponent(backButtonLabel))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(makeReservationButton)
-                        .addGap(62, 62, 62)
-                        .addComponent(cancelReservationButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(manageReservationsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(decrementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(incrementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(101, 101, 101))))
+                            .addComponent(reservationsLabel)
+                            .addComponent(reservationInfoLabel))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(backButtonLabel)
-                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButtonLabel)
+                    .addComponent(deleteButton))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lotNameLabel)
                     .addComponent(totalSpacesLabel))
@@ -404,6 +482,24 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         reservationInfoLabel.setText("Cancelled reservation for " + currResUser.toString());
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        deleteDialog.setSize(290, 150);
+        deleteDialog.setLocationRelativeTo(null);
+        deleteDialog.setVisible(true);
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        deleteDialog.dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        boolean removed = Database.lotDB.removeLot(currentLot);
+        if(removed) System.out.println("Succesfully deleted" + currentLot.getLotName());
+        deleteDialog.dispose();
+        CardLayout card = (CardLayout) getParent().getLayout();
+        card.show(getParent(), "listCard");
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
     private void updateConfirmDialog(User user){
         currResUser = user;
         customNameLabel.setText(user.toString());
@@ -414,6 +510,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backButtonLabel;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelReservationButton;
     private javax.swing.JButton confirmButton;
@@ -421,9 +518,14 @@ public class ParkingLotPanel extends javax.swing.JPanel {
     private javax.swing.JLabel customNameLabel;
     private javax.swing.JLabel customPlateLabel;
     private javax.swing.JButton decrementButton;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JDialog deleteDialog;
     private javax.swing.JLabel emptySpacesLabel;
     private javax.swing.JLabel emptySpacesNumber;
     private javax.swing.JButton incrementButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lotAddressLabel;
     private javax.swing.JLabel lotNameLabel;

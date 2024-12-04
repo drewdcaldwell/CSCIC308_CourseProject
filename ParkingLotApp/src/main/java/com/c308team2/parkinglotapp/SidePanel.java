@@ -5,6 +5,13 @@
 package com.c308team2.parkinglotapp;
 
 import java.awt.CardLayout;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -17,6 +24,39 @@ public class SidePanel extends javax.swing.JPanel {
      */
     public SidePanel() {
         initComponents();
+        // Create a DocumentFilter to allow only integers
+        DocumentFilter intOnly = new DocumentFilter() {
+            @Override
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*")) { // Only allow digits
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*")) { // Only allow digits
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) emptySpacesField.getDocument()).setDocumentFilter(intOnly);
+        ((AbstractDocument) totalSpacesField.getDocument()).setDocumentFilter(intOnly);
+//        ((AbstractDocument) emptySpacesField.getDocument()).setDocumentFilter(new DocumentFilter() {
+//            @Override
+//            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+//                if (string.matches("[0-9]*")) { // Only allow digits
+//                    super.insertString(fb, offset, string, attr);
+//                }
+//            }
+//
+//            @Override
+//            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+//                if (text.matches("[0-9]*")) { // Only allow digits
+//                    super.replace(fb, offset, length, text, attrs);
+//                }
+//            }
+//        });
     }
 
     /**
@@ -28,8 +68,109 @@ public class SidePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addLotDialog = new javax.swing.JDialog();
+        lotNameLabel = new javax.swing.JLabel();
+        lotAddressLabel = new javax.swing.JLabel();
+        emptySpacesLabel = new javax.swing.JLabel();
+        totalSpacesLabel = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
+        lotNameField = new javax.swing.JTextField();
+        lotAddressField = new javax.swing.JTextField();
+        emptySpacesField = new javax.swing.JTextField();
+        totalSpacesField = new javax.swing.JTextField();
+        cancelBtn = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        addLotButton = new javax.swing.JButton();
+
+        addLotDialog.setTitle("Enter New Lot Information:");
+
+        lotNameLabel.setText("Lot Name:");
+
+        lotAddressLabel.setText("Lot Address:");
+
+        emptySpacesLabel.setText("Empty Spaces:");
+
+        totalSpacesLabel.setText("Total Spaces:");
+
+        addBtn.setText("Add Lot");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        errorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        errorLabel.setText("     ");
+
+        javax.swing.GroupLayout addLotDialogLayout = new javax.swing.GroupLayout(addLotDialog.getContentPane());
+        addLotDialog.getContentPane().setLayout(addLotDialogLayout);
+        addLotDialogLayout.setHorizontalGroup(
+            addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addLotDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(addBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(cancelBtn)
+                .addGap(50, 50, 50))
+            .addGroup(addLotDialogLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addLotDialogLayout.createSequentialGroup()
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(addLotDialogLayout.createSequentialGroup()
+                        .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emptySpacesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                            .addComponent(lotAddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lotNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalSpacesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lotNameField)
+                            .addComponent(lotAddressField)
+                            .addGroup(addLotDialogLayout.createSequentialGroup()
+                                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(totalSpacesField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emptySpacesField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35))))
+        );
+        addLotDialogLayout.setVerticalGroup(
+            addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addLotDialogLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lotNameLabel)
+                    .addComponent(lotNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lotAddressLabel)
+                    .addComponent(lotAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emptySpacesLabel)
+                    .addComponent(emptySpacesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalSpacesLabel)
+                    .addComponent(totalSpacesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(errorLabel)
+                .addGap(18, 18, 18)
+                .addGroup(addLotDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addBtn)
+                    .addComponent(cancelBtn))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
 
         setBackground(new java.awt.Color(51, 153, 255));
         setPreferredSize(new java.awt.Dimension(200, 720));
@@ -46,6 +187,13 @@ public class SidePanel extends javax.swing.JPanel {
             }
         });
 
+        addLotButton.setText("Add New Lot");
+        addLotButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLotButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -57,15 +205,20 @@ public class SidePanel extends javax.swing.JPanel {
                         .addComponent(welcomeLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(logoutButton)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addComponent(logoutButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(addLotButton)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 612, Short.MAX_VALUE)
+                .addGap(71, 71, 71)
+                .addComponent(addLotButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 518, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );
@@ -77,12 +230,83 @@ public class SidePanel extends javax.swing.JPanel {
         card.show(getParent().getParent(), "loginCard");
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void addLotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLotButtonActionPerformed
+        addLotDialog.setSize(415, 300);
+        addLotDialog.setLocationRelativeTo(null);
+        lotNameField.setText("");
+        lotAddressField.setText("");
+        emptySpacesField.setText("");
+        totalSpacesField.setText("");
+        errorLabel.setText("");
+        addLotDialog.setVisible(true);
+    }//GEN-LAST:event_addLotButtonActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        addLotDialog.dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        String lotName = lotNameField.getText();
+        String lotAddress = lotAddressField.getText();
+        int emptySpaces;
+        int totalSpaces;
+        try {
+            emptySpaces = Integer.parseInt(emptySpacesField.getText());
+            totalSpaces = Integer.parseInt(totalSpacesField.getText());
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Invalid number of spaces");
+            return;
+        }
+        
+        
+        if(lotName.equals("") || lotAddress.equals("")){
+            errorLabel.setText("Please enter a valid name and address");
+            return;
+        }
+        else if(totalSpaces <= 0){
+            errorLabel.setText("Total Spaces must be greater than 0");
+            return;
+        } else if(emptySpaces > totalSpaces){
+            errorLabel.setText("Empty Spaces cannot exceed Total Spaces");
+            return;
+        }
+        ParkingLot newLot = new ParkingLot(lotName, lotAddress, emptySpaces, totalSpaces);
+        boolean added = Database.lotDB.addLot(newLot);
+        if (added){
+            System.out.println("Successfully added new lot");
+            addLotDialog.dispose();
+        } else{
+            errorLabel.setText("Problem adding lot...");
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
+
     public void updateName(String name){
         welcomeLabel.setText("Hello, " + name);
     }
+    
+    public void updateButtons(User user){
+        if(user.getUserType() > 2){
+            addLotButton.setVisible(true);
+        } else {
+            addLotButton.setVisible(false);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
+    private javax.swing.JButton addLotButton;
+    private javax.swing.JDialog addLotDialog;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JTextField emptySpacesField;
+    private javax.swing.JLabel emptySpacesLabel;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JTextField lotAddressField;
+    private javax.swing.JLabel lotAddressLabel;
+    private javax.swing.JTextField lotNameField;
+    private javax.swing.JLabel lotNameLabel;
+    private javax.swing.JTextField totalSpacesField;
+    private javax.swing.JLabel totalSpacesLabel;
     public static javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -150,6 +150,7 @@ public class LoginInputPanel extends javax.swing.JPanel {
         JPanel mainPanel2 = (JPanel) mainPanel1.getComponent(2);
         SidePanel sidePanel = (SidePanel) mainPanel2.getComponent(0);
         sidePanel.updateName(Session.getUser().getFirstName());
+        sidePanel.updateButtons(loggeduser);
         
         card.show(getParent().getParent(), "mainCard");
     }//GEN-LAST:event_loginButtonActionPerformed

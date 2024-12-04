@@ -1,6 +1,8 @@
 com\c308team2\parkinglotapp\ParkingLotPanel$1.class
 com\c308team2\parkinglotapp\MainFrame$2.class
+com\c308team2\parkinglotapp\SidePanel$2.class
 com\c308team2\parkinglotapp\ParkingListPanel$1.class
+com\c308team2\parkinglotapp\ParkingLotPanel$12.class
 com\c308team2\parkinglotapp\Database.class
 com\c308team2\parkinglotapp\ParkingLotPanel$6.class
 com\c308team2\parkinglotapp\Session.class
@@ -11,10 +13,13 @@ com\c308team2\parkinglotapp\ParkingLotPanel$9.class
 com\c308team2\parkinglotapp\RegisterInputPanel$2.class
 com\c308team2\parkinglotapp\ParkingListItem.class
 com\c308team2\parkinglotapp\LoginInputPanel$2.class
+com\c308team2\parkinglotapp\ParkingLotPanel$10.class
 com\c308team2\parkinglotapp\MainFrame.class
 com\c308team2\parkinglotapp\TestParkingLots.class
 com\c308team2\parkinglotapp\ParkingListPanel.class
+com\c308team2\parkinglotapp\SidePanel$5.class
 com\c308team2\parkinglotapp\ParkingLotPanel$4.class
+com\c308team2\parkinglotapp\SidePanel$3.class
 com\c308team2\parkinglotapp\Customer.class
 com\c308team2\parkinglotapp\ParkingLotPanel$7.class
 com\c308team2\parkinglotapp\User.class
@@ -33,7 +38,9 @@ com\c308team2\parkinglotapp\ParkingLotPanel$3.class
 com\c308team2\parkinglotapp\ParkingLot.class
 com\c308team2\parkinglotapp\ParkingLotPanel$5.class
 com\c308team2\parkinglotapp\SidePanel$1.class
+com\c308team2\parkinglotapp\SidePanel$4.class
 com\c308team2\parkinglotapp\LoginInputPanel$1.class
 com\c308team2\parkinglotapp\ParkingLotPanel$8.class
 com\c308team2\parkinglotapp\LoginWelcomePanel.class
 com\c308team2\parkinglotapp\RegisterInputPanel.class
+com\c308team2\parkinglotapp\ParkingLotPanel$11.class
