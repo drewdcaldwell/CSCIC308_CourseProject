@@ -4,10 +4,7 @@
  */
 package com.c308team2.parkinglotapp;
 
-/**
- *
- * @author dustt
- */
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,27 +21,14 @@ public class ParkingLotCellRenderer extends JLabel implements ListCellRenderer<P
             int index, 
             boolean isSelected, 
             boolean cellHasFocus) {
+        // custom method called to render each ParkingLot in the ParkingLotList
 
-        // Format the text to display for each ParkingLot
-        setText(String.format("ID: %d | Name: %s | Spaces: %d/%d",
-                value.getLotID(),
-                value.getLotName(),
-                value.getEmptySpaces(),
-                value.getTotalSpaces()));
 
-        // Set background and foreground colors for selected/non-selected states
-        if (isSelected) {
-            setBackground(list.getSelectionBackground());
-            setForeground(list.getSelectionForeground());
-        } else {
-            setBackground(list.getBackground());
-            setForeground(list.getForeground());
-        }
+        // Create and return a ParkingListItem for the given ParkingLot
         JPanel itemPanel = new ParkingListItem(value);
         if(isSelected){
             itemPanel.setBackground(list.getSelectionBackground());
         }
         return itemPanel;
-        //return this;
     }
 }

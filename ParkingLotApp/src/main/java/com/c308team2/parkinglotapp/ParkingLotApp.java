@@ -6,10 +6,7 @@ package com.c308team2.parkinglotapp;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-/**
- *
- * @author dustt
- */
+
 public class ParkingLotApp {
 
     public static void main(String[] args) {
@@ -17,7 +14,7 @@ public class ParkingLotApp {
         Database.initiateDB();
         
         // to make account a SuperAdmin do this:
-        //Database.userDB.get("dusn").setUserType(3);
+        Database.getUser("dusn").setUserType(3);
         
         FlatLightLaf.setup();
 

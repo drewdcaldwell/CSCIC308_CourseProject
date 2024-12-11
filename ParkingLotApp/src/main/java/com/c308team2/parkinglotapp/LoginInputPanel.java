@@ -9,10 +9,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author dustt
- */
+
 public class LoginInputPanel extends javax.swing.JPanel {
 
     /**
@@ -116,15 +113,25 @@ public class LoginInputPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // method called when Register Now button is pressed
+        
+        // display the registerCard
         CardLayout card = (CardLayout) getParent().getParent().getLayout();
         card.show(getParent().getParent(), "registerCard");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // method called when Login button is pressed
+        
+        // get user entered information
         String username = usernameTextField.getText();
         char[] password = passwordField.getPassword();
         String passString = new String(password);
+        
+        // try to get entered username from DB
         Customer loggeduser = (Customer) Database.getUser(username);
+        
+        // if username not found, display error
         if(loggeduser == null) {
             System.out.println("User not found...");
             errorLabel.setText("Username not found. Please try again.");
@@ -132,15 +139,23 @@ public class LoginInputPanel extends javax.swing.JPanel {
         }
         
         
+        // username found in DB
+        // check if entered password matches password stored in DB
         if(!passString.equals(loggeduser.getPasskey())){
+            // password incorrect, display error
             System.out.println("Incorrect password...");
             errorLabel.setText("Sorry, password incorrect, please try again.");
             return;
         }
+        
+        // username and password are valid
         System.out.println("Logging in " + loggeduser.getFirstName());
+        // update Session
         Session.setUser(loggeduser);
         
         
+        // Update and display MainPanel
+        // There's probably a better way to do this, but it works
         CardLayout card = (CardLayout) getParent().getParent().getLayout();
         JPanel mainPanel1 = (JPanel) getParent().getParent();
         JPanel mainPanel2 = (JPanel) mainPanel1.getComponent(2);
@@ -148,11 +163,21 @@ public class LoginInputPanel extends javax.swing.JPanel {
         sidePanel.updateName(Session.getUser().getFirstName());
         sidePanel.updateButtons(loggeduser);
         
+        // default to display parking lot list on mainPagePanel
+        JPanel mainPagePanel = (JPanel) mainPanel2.getComponent(1);
+        CardLayout mainPageCard = (CardLayout) mainPagePanel.getLayout();
+        mainPageCard.show(mainPagePanel, "listCard");
+        
+        // show the MainPanel
         card.show(getParent().getParent(), "mainCard");
     }//GEN-LAST:event_loginButtonActionPerformed
 
     public void clearPassword(){
+        // method to clear the password field
         passwordField.setText("");
+        
+        // clear error text as well
+        errorLabel.setText(" ");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

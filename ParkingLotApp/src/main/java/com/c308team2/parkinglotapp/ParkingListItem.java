@@ -6,10 +6,7 @@ package com.c308team2.parkinglotapp;
 
 import java.awt.Color;
 
-/**
- *
- * @author dustt
- */
+
 public class ParkingListItem extends javax.swing.JPanel {
 
     /**
@@ -19,13 +16,18 @@ public class ParkingListItem extends javax.swing.JPanel {
         initComponents();
     }
     
+    // Constructor to create a new ParkingListItem with the given ParkingLot
     public ParkingListItem(ParkingLot parkingLot){
+        // initialize components
         initComponents();
+        
+        // update components with given ParkingLot
         lotNameLabel.setText(parkingLot.getLotName());
         lotAddressLabel.setText(parkingLot.getAddress());
         numberSpacesLabel.setText(parkingLot.getEmptySpaces() + " / " + parkingLot.getTotalSpaces());
         progressBar.setMaximum(parkingLot.getTotalSpaces());
         progressBar.setValue(parkingLot.getOccupiedSpaces());
+        // set progressBar color based off lot fullness
         double fullness = parkingLot.getOccupiedSpaces() / (1.0 * parkingLot.getTotalSpaces());
         if(fullness == 1) progressBar.setForeground(Color.red);
         else if(fullness >= 0.60) progressBar.setForeground(Color.ORANGE);
@@ -50,13 +52,16 @@ public class ParkingListItem extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1080, 150));
         setPreferredSize(new java.awt.Dimension(1000, 150));
 
-        lotNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lotNameLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 24)); // NOI18N
         lotNameLabel.setText("Lot Name");
 
+        lotAddressLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         lotAddressLabel.setText("Lot Address");
 
+        availableSpacesLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         availableSpacesLabel.setText("Available Spaces:");
 
+        numberSpacesLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         numberSpacesLabel.setText("-- / --");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -89,7 +94,7 @@ public class ParkingListItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lotAddressLabel))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

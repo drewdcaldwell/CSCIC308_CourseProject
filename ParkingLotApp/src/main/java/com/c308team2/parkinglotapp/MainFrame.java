@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,10 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
-/**
- *
- * @author dustt
- */
+
 public class MainFrame extends javax.swing.JFrame {
 
     /**
@@ -19,8 +17,12 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        // set login button as default button:
+        // get loginInputPanel
         JPanel loginInputP = (JPanel) loginPanel.getComponent(1);
+        // get loginButton
         JButton loginButton = (JButton) loginInputP.getComponent(6);
+        // set loginButton as default
         getRootPane().setDefaultButton(loginButton);
     }
 
@@ -74,8 +76,12 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // method called when the window is closed
+        
+        // save DB to file
         System.out.println("Saving Database");
         Database.saveDBToFile();
+        // exit after saving
         System.out.println("Closing now");
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing

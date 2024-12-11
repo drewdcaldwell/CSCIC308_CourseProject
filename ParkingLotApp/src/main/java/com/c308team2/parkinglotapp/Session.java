@@ -4,10 +4,7 @@
  */
 package com.c308team2.parkinglotapp;
 
-/**
- *
- * @author dustt
- */
+
 public class Session {
     private static User currentUser;
     

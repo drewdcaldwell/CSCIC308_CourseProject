@@ -6,10 +6,7 @@ package com.c308team2.parkinglotapp;
 
 import java.awt.CardLayout;
 
-/**
- *
- * @author dustt
- */
+
 public class RegisterInputPanel extends javax.swing.JPanel {
 
     /**
@@ -46,12 +43,16 @@ public class RegisterInputPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(640, 720));
 
+        usernameLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         usernameLabel.setText("Username:");
 
+        passwordLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         passwordLabel.setText("Password:");
 
-        loginLabel.setText("Please Login");
+        loginLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
+        loginLabel.setText("Create an Account:");
 
+        loginButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         loginButton.setText("Login Now");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +60,7 @@ public class RegisterInputPanel extends javax.swing.JPanel {
             }
         });
 
+        registerButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         registerButton.setText("Create Account");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,14 +68,19 @@ public class RegisterInputPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Already Registered?");
 
+        jLabel2.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel2.setText("First Name:");
 
+        jLabel3.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Last Name:");
 
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Plate Number:");
 
+        errorLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         errorLabel.setForeground(new java.awt.Color(255, 0, 0));
         errorLabel.setText("    ");
 
@@ -137,7 +144,7 @@ public class RegisterInputPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(loginButton))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -147,16 +154,23 @@ public class RegisterInputPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // method called when user presses register button
+        
+        // get user entered text from fields
         String username = usernameTextField.getText();
         String password = new String(passwordField.getPassword());
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String plateNumber = plateField.getText();
-        if(Database.userDB.containsKey(username)){
+        
+        // check if the username already exists
+        if(Database.getUser(username) != null){
             System.out.println("Username already exists");
             errorLabel.setText("Username already exists");
             return;
         }
+        
+        // create new user, add to DB
         Customer newUser = new Customer(firstName, lastName, plateNumber, username, password);
         Database.addUser(newUser);
         errorLabel.setText("Account created");

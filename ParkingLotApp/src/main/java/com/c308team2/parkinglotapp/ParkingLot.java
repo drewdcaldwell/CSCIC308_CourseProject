@@ -112,6 +112,11 @@ public class ParkingLot implements Serializable {
         staffList.remove(username);
     }
     
+    public void removeStaff(User user){
+        if(staffList == null) return;
+        staffList.remove(user.getAccount());
+    }
+    
     public boolean checkStaff(String username){
         if(staffList == null) staffList = new HashSet<>();
         return staffList.contains(username);
@@ -164,5 +169,9 @@ public class ParkingLot implements Serializable {
     public void resetLot() {
         reservations.clear();
         emptySpaces = totalSpaces;
+    }
+    
+    public String toString(){
+        return lotName + ", " + address;
     }
 }

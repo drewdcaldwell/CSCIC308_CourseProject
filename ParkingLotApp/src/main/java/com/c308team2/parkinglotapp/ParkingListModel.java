@@ -8,10 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
-/**
- *
- * @author dustt
- */
+
+// class designed to store ParkingLots and be used as a ListModel for JLists
 public class ParkingListModel extends AbstractListModel<ParkingLot> implements Serializable {
     private static final long serialVersionUID = 1L;
     private ArrayList<ParkingLot> parkingLots;
@@ -83,6 +81,10 @@ public class ParkingListModel extends AbstractListModel<ParkingLot> implements S
 
     void clear() {
         parkingLots.clear();
+    }
+    
+    public ArrayList<ParkingLot> getAllLots(){
+        return new ArrayList<>(parkingLots);
     }
     
 }

@@ -17,7 +17,7 @@ public abstract class User implements Serializable {
     private static int nextUserID = 1;
     private final int userID;
     private int userType;
-    private String firstName, lastName, accountName, passkey;
+    private String firstName, lastName, accountName, passkey, plateNumber;
 
     public User(String firstName, String lastName) {
         this.userID = nextUserID++;
@@ -31,6 +31,17 @@ public abstract class User implements Serializable {
         this.lastName = lastName;
         this.accountName = accountName;
         this.passkey = passkey;
+        this.plateNumber = "DEF_PL";
+    }
+    
+    public User(String firstName, String lastName, String plateNumber, String accountName, String passkey) {
+        this.userID = nextUserID++;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.plateNumber = plateNumber;
+        this.accountName = accountName;
+        this.passkey = passkey;
+        this.plateNumber = "DEF_PL";
     }
 
     public void setUserType(int userType) {
@@ -86,5 +97,13 @@ public abstract class User implements Serializable {
     @Override
     public String toString() {
         return getFirstName() + " " + getLastName();
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 }

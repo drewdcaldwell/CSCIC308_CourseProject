@@ -11,10 +11,7 @@ import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
-/**
- *
- * @author dustt
- */
+
 public class ParkingLotPanel extends javax.swing.JPanel {
     private ParkingLot currentLot;
     private User currResUser;
@@ -27,27 +24,38 @@ public class ParkingLotPanel extends javax.swing.JPanel {
     }
     
     public void updateLot(ParkingLot parkingLot){
+        // method to update the panel with a given ParkingLot
         currentLot = parkingLot;
         updateInfo();
     }
     
     public void updateInfo(){
+        // method to update the page
+        
+        // update labels
         lotNameLabel.setText(currentLot.getLotName());
         lotAddressLabel.setText(currentLot.getAddress());
         totalSpacesNumber.setText("" + currentLot.getTotalSpaces());
         emptySpacesNumber.setText("" + currentLot.getEmptySpaces());
+        
+        
         User currentUser = Session.getUser();
         System.out.println("Current user: " + currentUser.getFirstName());
+        
+        // update Reservation buttons
         if(currentLot.checkReservation(currentUser)){
+            // currentUser has a reservation
             System.out.println("Reservation found");
             makeReservationButton.setEnabled(false);
             cancelReservationButton.setEnabled(true);
             reservationInfoLabel.setText("You already have a reservation.");
         } else if(currentLot.getEmptySpaces() == 0){
+            // lot is full, do not allow new reservations
             makeReservationButton.setEnabled(false);
             cancelReservationButton.setEnabled(false);
             reservationInfoLabel.setText("Sorry, this lot is full.");
         } else {
+            // currentUser does not have reservation and lot has empty spaces
             System.out.println("No Reservation found");
             makeReservationButton.setEnabled(true);
             cancelReservationButton.setEnabled(false);
@@ -275,11 +283,13 @@ public class ParkingLotPanel extends javax.swing.JPanel {
         emptySpacesLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
         emptySpacesLabel.setText("Empty Spaces:");
 
-        emptySpacesNumber.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        emptySpacesNumber.setFont(new java.awt.Font("Malgun Gothic", 0, 36)); // NOI18N
         emptySpacesNumber.setText("25");
 
+        reservationsLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         reservationsLabel.setText("Reservations:");
 
+        makeReservationButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         makeReservationButton.setText("Reserve a Spot");
         makeReservationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,6 +297,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        cancelReservationButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         cancelReservationButton.setText("Cancel Reservation");
         cancelReservationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,8 +314,10 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        reservationInfoLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         reservationInfoLabel.setText("Make a reservation.");
 
+        incrementButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         incrementButton.setText("Increment Empty Spaces (Car Leaving)");
         incrementButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +325,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        decrementButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         decrementButton.setText("Decrement Empty Spaces (Car Entering)");
         decrementButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,6 +333,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        manageReservationsButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         manageReservationsButton.setText("Manage Reservations");
         manageReservationsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,6 +341,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         deleteButton.setText("Delete This Lot");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +372,7 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButtonLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(deleteButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(makeReservationButton)
                                 .addGap(62, 62, 62)
@@ -408,104 +424,166 @@ public class ParkingLotPanel extends javax.swing.JPanel {
                 .addComponent(decrementButton)
                 .addGap(18, 18, 18)
                 .addComponent(manageReservationsButton)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonLabelMouseClicked
+        // method called when back button is pressed
+        
+        // display the parkingListCard
         CardLayout card = (CardLayout) getParent().getLayout();
         card.show(getParent(), "listCard"); 
     }//GEN-LAST:event_backButtonLabelMouseClicked
 
     private void makeReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReservationButtonActionPerformed
+        // method called when Make Reservation button is pressed
+        
+        // add reservation for currentUser and update page
         User currentUser = Session.getUser();
         currentLot.addReservation(currentUser);
         updateInfo();
     }//GEN-LAST:event_makeReservationButtonActionPerformed
 
     private void cancelReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelReservationButtonActionPerformed
+        // method called when Cancel Reservation button is pressed
+        
+        // cancel reservation for currentUser and update page
         User currentUser = Session.getUser();
         currentLot.cancelReservation(currentUser);
         updateInfo();
     }//GEN-LAST:event_cancelReservationButtonActionPerformed
 
     private void incrementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incrementButtonActionPerformed
+        // method called when increment spaces button is pressed
+        
+        // increment spaces and update page
         currentLot.incrementSpaces();
         updateInfo();
     }//GEN-LAST:event_incrementButtonActionPerformed
 
     private void decrementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrementButtonActionPerformed
+        // method called when decrement spaces button is pressed
+        
+        // decrement spaces and update page
         currentLot.decrementSpaces();
         updateInfo();
     }//GEN-LAST:event_decrementButtonActionPerformed
 
     private void manageReservationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageReservationsButtonActionPerformed
+        // method called when Manage Reservations button is pressed
+        
+        // get reservations of currentLot
         Map<String, User> reservations = currentLot.getReservations();
         
+        // create a ListModel of all reservations to be used with JList
         DefaultListModel<User> listModel = new DefaultListModel<>();
         for (User value : reservations.values()) {
             listModel.addElement(value);
         }
+        
+        // set the JList model
         reservationList.setModel(listModel);
+        
+        // prepare and display reservationDialog
         reservationDialog.setSize(250, 200);
-        reservationDialog.setLocationRelativeTo(null);
+        reservationDialog.setLocationRelativeTo(null); // center
+        // make sure confirmDialog is not visible when opened
         confirmDialog.setVisible(false);
         reservationDialog.setVisible(true);
     }//GEN-LAST:event_manageReservationsButtonActionPerformed
 
     private void reservationListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_reservationListValueChanged
+        // method called when a reservation is selected from the reservationDialog
+        
+        // get the User of selected reservation
         User currentReservedUser = reservationList.getSelectedValue();
         
+        // update the confirmDialog with the selected user
         if(currentReservedUser != null) {
             updateConfirmDialog(currentReservedUser);
         }
         
+        // prepare and display the confirmDialog
         confirmDialog.setSize(225, 220);
-        confirmDialog.setLocationRelativeTo(null);
+        confirmDialog.setLocationRelativeTo(null); // center
         confirmDialog.setVisible(true);
+        
+        // clear selection
         reservationList.clearSelection();
     }//GEN-LAST:event_reservationListValueChanged
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        // method called when the Confirm button is pressed on confirmDialog
+        
+        // confirm the selected reservation
         currentLot.confirmReservation(currResUser);
+        
+        // close the dialogs
         confirmDialog.dispose();
         reservationDialog.dispose();
+        
+        // update page
         updateInfo();
         reservationInfoLabel.setText("Confirmed reservation for " + currResUser.toString());
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // method called when Cancel button is pressed in confirmDialog
+        
+        // cancel the selected reservation
         currentLot.cancelReservation(currResUser);
+        
+        // close the dialogs
         confirmDialog.dispose();
         reservationDialog.dispose();
+        
+        // update page
         updateInfo();
         reservationInfoLabel.setText("Cancelled reservation for " + currResUser.toString());
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // method called when Delete Lot button is pressed
+        
+        // prepare and display deleteDialog to confirm deletion
         deleteDialog.setSize(290, 150);
         deleteDialog.setLocationRelativeTo(null);
         deleteDialog.setVisible(true);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // method called when Cancel button is pressed in deleteDialog
+        
+        // close the deleteDialog
         deleteDialog.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // method called when Delete button is pressed in deleteDialog
+        // confirms and fully deletes lot from DB
+        
+        // remove the currentLot from DB
         boolean removed = Database.lotDB.removeLot(currentLot);
         if(removed) System.out.println("Succesfully deleted" + currentLot.getLotName());
+        
+        // close the deleteDialog
         deleteDialog.dispose();
+        
+        // go back to parkingListCard
         CardLayout card = (CardLayout) getParent().getLayout();
         card.show(getParent(), "listCard");
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void updateConfirmDialog(User user){
+        // method called to update the confirmDialog with given User
+        
+        // update selected user
         currResUser = user;
+        // update labels
         customNameLabel.setText(user.toString());
-        if ( user instanceof Customer customer ){
-            customPlateLabel.setText(customer.getPlateNumber());
-        }
+        customPlateLabel.setText(user.getPlateNumber());
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

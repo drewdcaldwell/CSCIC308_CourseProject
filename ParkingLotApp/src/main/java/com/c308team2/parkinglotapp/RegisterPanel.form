@@ -35,7 +35,7 @@
                   <Component id="loginWelcomePanel1" min="-2" max="-2" attributes="0"/>
                   <Component id="registerInputPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="726" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

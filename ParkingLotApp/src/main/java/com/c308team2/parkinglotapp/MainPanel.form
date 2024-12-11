@@ -25,7 +25,7 @@
               <Component id="sidePanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="bigPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="1135" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +67,20 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="lotCard"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="com.c308team2.parkinglotapp.UserListPanel" name="userListPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="userListCard"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="com.c308team2.parkinglotapp.UserPanel" name="userPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="userCard"/>
             </Constraint>
           </Constraints>
         </Component>

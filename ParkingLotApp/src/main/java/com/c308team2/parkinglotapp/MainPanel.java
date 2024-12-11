@@ -4,10 +4,7 @@
  */
 package com.c308team2.parkinglotapp;
 
-/**
- *
- * @author dustt
- */
+
 public class MainPanel extends javax.swing.JPanel {
 
     /**
@@ -30,6 +27,8 @@ public class MainPanel extends javax.swing.JPanel {
         bigPanel = new javax.swing.JPanel();
         parkingListPanel1 = new com.c308team2.parkinglotapp.ParkingListPanel();
         parkingLotPanel1 = new com.c308team2.parkinglotapp.ParkingLotPanel();
+        userListPanel1 = new com.c308team2.parkinglotapp.UserListPanel();
+        userPanel1 = new com.c308team2.parkinglotapp.UserPanel();
 
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -37,6 +36,8 @@ public class MainPanel extends javax.swing.JPanel {
         bigPanel.setLayout(new java.awt.CardLayout());
         bigPanel.add(parkingListPanel1, "listCard");
         bigPanel.add(parkingLotPanel1, "lotCard");
+        bigPanel.add(userListPanel1, "userListCard");
+        bigPanel.add(userPanel1, "userCard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -46,7 +47,7 @@ public class MainPanel extends javax.swing.JPanel {
                 .addComponent(sidePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(bigPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1135, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,5 +68,7 @@ public class MainPanel extends javax.swing.JPanel {
     private com.c308team2.parkinglotapp.ParkingListPanel parkingListPanel1;
     private com.c308team2.parkinglotapp.ParkingLotPanel parkingLotPanel1;
     public static com.c308team2.parkinglotapp.SidePanel sidePanel1;
+    private com.c308team2.parkinglotapp.UserListPanel userListPanel1;
+    private com.c308team2.parkinglotapp.UserPanel userPanel1;
     // End of variables declaration//GEN-END:variables
 }

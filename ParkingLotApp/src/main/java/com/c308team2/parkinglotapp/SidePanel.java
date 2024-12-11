@@ -14,10 +14,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
-/**
- *
- * @author dustt
- */
+
 public class SidePanel extends javax.swing.JPanel {
 
     /**
@@ -41,23 +38,10 @@ public class SidePanel extends javax.swing.JPanel {
                 }
             }
         };
+        // Set integer only filter to spaceFields
         ((AbstractDocument) emptySpacesField.getDocument()).setDocumentFilter(intOnly);
         ((AbstractDocument) totalSpacesField.getDocument()).setDocumentFilter(intOnly);
-//        ((AbstractDocument) emptySpacesField.getDocument()).setDocumentFilter(new DocumentFilter() {
-//            @Override
-//            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-//                if (string.matches("[0-9]*")) { // Only allow digits
-//                    super.insertString(fb, offset, string, attr);
-//                }
-//            }
-//
-//            @Override
-//            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-//                if (text.matches("[0-9]*")) { // Only allow digits
-//                    super.replace(fb, offset, length, text, attrs);
-//                }
-//            }
-//        });
+
     }
 
     /**
@@ -84,6 +68,8 @@ public class SidePanel extends javax.swing.JPanel {
         welcomeLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         addLotButton = new javax.swing.JButton();
+        manageAccountsButton = new javax.swing.JButton();
+        manageLotsButton = new javax.swing.JButton();
 
         addLotDialog.setTitle("Enter New Lot Information:");
 
@@ -180,18 +166,37 @@ public class SidePanel extends javax.swing.JPanel {
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
         welcomeLabel.setText("Hello,");
 
+        logoutButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         logoutButton.setText("Log Out");
         logoutButton.setActionCommand("Log");
+        logoutButton.setPreferredSize(new java.awt.Dimension(147, 24));
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutButtonActionPerformed(evt);
             }
         });
 
+        addLotButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         addLotButton.setText("Add New Lot");
         addLotButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addLotButtonActionPerformed(evt);
+            }
+        });
+
+        manageAccountsButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
+        manageAccountsButton.setText("Manage Accounts");
+        manageAccountsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageAccountsButtonActionPerformed(evt);
+            }
+        });
+
+        manageLotsButton.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
+        manageLotsButton.setText("Manage Lots");
+        manageLotsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageLotsButtonActionPerformed(evt);
             }
         });
 
@@ -200,17 +205,16 @@ public class SidePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(welcomeLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(logoutButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(addLotButton)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(addLotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(manageLotsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageAccountsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(welcomeLabel))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,23 +223,41 @@ public class SidePanel extends javax.swing.JPanel {
                 .addComponent(welcomeLabel)
                 .addGap(71, 71, 71)
                 .addComponent(addLotButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 518, Short.MAX_VALUE)
-                .addComponent(logoutButton)
-                .addGap(28, 28, 28))
+                .addGap(18, 18, 18)
+                .addComponent(manageAccountsButton)
+                .addGap(18, 18, 18)
+                .addComponent(manageLotsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // clear the Session
         Session.clear();
+        // get mainPanel
         JPanel mainPanel = (JPanel) getParent().getParent();
+        
+        // clear password on loginInputPanel:
+        // get loginPanel from mainPanel
         LoginPanel loginPanel = (LoginPanel) mainPanel.getComponent(0);
+        // get loginInputPanel from loginPanel
         LoginInputPanel inputPanel = (LoginInputPanel) loginPanel.getComponent(1);
+        // clear password on loginInputPanel
         inputPanel.clearPassword();
-        CardLayout card = (CardLayout) getParent().getParent().getLayout();
-        card.show(getParent().getParent(), "loginCard");
+        
+        // go back to login card:
+        // get cardLayout of mainPanel
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        // show loginCard
+        card.show(mainPanel, "loginCard");
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void addLotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLotButtonActionPerformed
+        // method called when Add New Lot button is pressed
+        
+        // prepare and show the addLotDialog
         addLotDialog.setSize(415, 300);
         addLotDialog.setLocationRelativeTo(null);
         lotNameField.setText("");
@@ -247,10 +269,16 @@ public class SidePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addLotButtonActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // method called when Cancel button is pressed in addLotDialog
+        
+        // close addLotDialog
         addLotDialog.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // method called when Add button is pressed in addLotDialog
+        
+        // get user entered information
         String lotName = lotNameField.getText();
         String lotAddress = lotAddressField.getText();
         int emptySpaces;
@@ -263,7 +291,7 @@ public class SidePanel extends javax.swing.JPanel {
             return;
         }
         
-        
+        // validate information
         if(lotName.equals("") || lotAddress.equals("")){
             errorLabel.setText("Please enter a valid name and address");
             return;
@@ -275,7 +303,10 @@ public class SidePanel extends javax.swing.JPanel {
             errorLabel.setText("Empty Spaces cannot exceed Total Spaces");
             return;
         }
+        
+        // valid entry, create new lot
         ParkingLot newLot = new ParkingLot(lotName, lotAddress, emptySpaces, totalSpaces);
+        // add lot to DB
         boolean added = Database.lotDB.addLot(newLot);
         if (added){
             System.out.println("Successfully added new lot");
@@ -285,15 +316,40 @@ public class SidePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void manageAccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAccountsButtonActionPerformed
+        // method called when Manage Accounts button is pressed
+        
+        // display userListCard on mainPanel:
+        JPanel mainPanel = (JPanel) getParent().getComponent(1);
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "userListCard");
+        
+    }//GEN-LAST:event_manageAccountsButtonActionPerformed
+
+    private void manageLotsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageLotsButtonActionPerformed
+        // method called when Manage Lots button is pressed
+        
+        // display parkingListCard on mainPanel:
+        JPanel mainPanel = (JPanel) getParent().getComponent(1);
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel, "listCard");
+    }//GEN-LAST:event_manageLotsButtonActionPerformed
+
     public void updateName(String name){
+        // method to update the welcome label
+        
         welcomeLabel.setText("Hello, " + name);
     }
     
     public void updateButtons(User user){
-        if(user.getUserType() > 2){
+        if(user.getUserType() >= 2){
             addLotButton.setVisible(true);
+            manageAccountsButton.setVisible(true);
+            manageLotsButton.setVisible(true);
         } else {
             addLotButton.setVisible(false);
+            manageAccountsButton.setVisible(false);
+            manageLotsButton.setVisible(false);
         }
     }
 
@@ -310,6 +366,8 @@ public class SidePanel extends javax.swing.JPanel {
     private javax.swing.JLabel lotAddressLabel;
     private javax.swing.JTextField lotNameField;
     private javax.swing.JLabel lotNameLabel;
+    private javax.swing.JButton manageAccountsButton;
+    private javax.swing.JButton manageLotsButton;
     private javax.swing.JTextField totalSpacesField;
     private javax.swing.JLabel totalSpacesLabel;
     public static javax.swing.JLabel welcomeLabel;

@@ -7,10 +7,7 @@ package com.c308team2.parkinglotapp;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
-/**
- *
- * @author dustt
- */
+
 public class ParkingListPanel extends javax.swing.JPanel {
 
     /**
@@ -62,12 +59,21 @@ public class ParkingListPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void parkingLotListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_parkingLotListValueChanged
-        //getParent().add(new ParkingLotPanel((ParkingLot) jList1.getSelectedValue()), "new");
-        CardLayout card = (CardLayout) getParent().getLayout();
-        ParkingLotPanel lotPanel = (ParkingLotPanel) getParent().getComponent(1);
+        // method called when a ParkingLot is selected from the list
+        
+        // get selected lot
         ParkingLot currentLot = parkingLotList.getSelectedValue();
+        
+        // get lotPanel, this is the panel that displays individual lot info
+        ParkingLotPanel lotPanel = (ParkingLotPanel) getParent().getComponent(1);
+        // update lotPanel with selected lot
         if(currentLot != null) lotPanel.updateLot(currentLot);
+        
+        // show the lotPanel card
+        CardLayout card = (CardLayout) getParent().getLayout();
         card.show(getParent(), "lotCard");
+        
+        // clear selection
         parkingLotList.clearSelection();
     }//GEN-LAST:event_parkingLotListValueChanged
 
