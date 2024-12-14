@@ -83,7 +83,7 @@ public class ParkingLot implements Serializable {
     }
     
     public int getOccupiedSpaces(){
-        return totalSpaces - emptySpaces - reservations.size();
+        return totalSpaces - emptySpaces;
     }
 
     public void incrementSpaces() {
